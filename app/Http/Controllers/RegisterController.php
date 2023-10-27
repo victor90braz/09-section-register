@@ -11,6 +11,8 @@ class RegisterController extends Controller
 
     public function store()
     {
+        ddd(request()->all());
+
         request()->validate([
             'name' => [
                 'required',

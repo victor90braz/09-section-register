@@ -102,7 +102,7 @@ $cat = \App\Models\Category::factory(30)->create();
         @csrf
     </form>
 
--   @csrf -> always have to add it to form
+-   @csrf -> always have to add it to form, to avoid error 419
 
 -   store
     request()->validate([
@@ -111,3 +111,18 @@ $cat = \App\Models\Category::factory(30)->create();
     'email' => 'required|email|max:255',
     'password' => 'required|max:255|min:7',
     ]);
+
+        public function store()
+
+    {
+    ddd(request()->all());
+
+        array:5 [▼
+        "_token" => "yKum8dfOTzgmil9gdEDs63ROaFftVDta1oPPjGJF"
+        "name" => "victor"
+        "username" => "braz90braz"
+        "password" => "braz"
+        "email" => "braz@gmail.com"
+        ]
+
+    }
