@@ -120,6 +120,17 @@ public function store()
 }
 ```
 
+-   `Rule::unique('users', 'username')`
+
+```php
+'username' => [
+    'required',
+    'min:3',
+    'max:255',
+    Rule::unique('users', 'username')
+],
+```
+
 Important to know, Laravel doesn't allow sending the form if it doesn't match.
 
 ```php
@@ -146,7 +157,7 @@ Find an ID in the DB:
 
 ```php
 > \App\Models\User::find(62)
-> = App\Models\User {#6468
+> = App\Models.User {#6468
     id: 62,
     username: "ronaldinho10",
     name: "ronaldinho",

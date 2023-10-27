@@ -40,6 +40,11 @@
                             required
                             value="{{ old('name') }}"
                     />
+
+
+                    @error('username')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -55,6 +60,11 @@
                             id="password"
                             required
                     />
+
+
+                    @error('password')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -71,6 +81,10 @@
                             required
                             value="{{ old('name') }}"
                     />
+
+                    @error('email')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
