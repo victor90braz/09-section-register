@@ -161,3 +161,9 @@ $cat = \App\Models\Category::factory(30)->create();
     updated_at: "2023-10-27 10:12:33",
 
 }
+
+# very important to use the convention set""Attribute
+
+    public function setPasswordAttribute($password) {
+        $this->attributes['password'] = bcrypt($password);
+    }
