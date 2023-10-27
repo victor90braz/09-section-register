@@ -60,19 +60,19 @@ php artisan make:migration create_categories_table
 php artisan make:model Category
 ```
 
-4. Run the migration to create the "categories" table:
+3. Run the migration to create the "categories" table:
 
 ```bash
 php artisan migrate
 ```
 
-1. Retrieve a post with its associated category:
+4. Retrieve a post with its associated category:
 
 ```php
 $post = \App\Models\Post::with('category')->first();
 ```
 
-2. Access the post's category name:
+5. Access the post's category name:
 
 ```php
 $post->category->name;
@@ -96,60 +96,57 @@ php artisan tinker
 $cat = \App\Models\Category::factory(30)->create();
 ```
 
-# Notes
+## Notes
 
-    <form action="/" method="POST">
-        @csrf
-    </form>
+```html
+<form action="/" method="POST">@csrf</form>
+```
 
--   @csrf -> always have to add it to form, to avoid error 419
+-   `@csrf` -> always have to add it to the form to avoid error 419
 
--   store
+-   `store` function:
+
+```php
+public function store()
+{
     request()->validate([
-    'name' => 'required:max:255',
-    'username' => 'required|max:255|min:3',
-    'email' => 'required|email|max:255',
-    'password' => 'required|max:255|min:7',
+        'name' => 'required:max:255',
+        'username' => 'required|max:255|min:3',
+        'email' => 'required|email|max:255',
+        'password' => 'required|max:255|min:7',
     ]);
 
-        public function store()
-
-    {
     ddd(request()->all());
+}
+```
 
-        array:5 [▼
-        "_token" => "yKum8dfOTzgmil9gdEDs63ROaFftVDta1oPPjGJF"
-        "name" => "victor"
-        "username" => "braz90braz"
-        "password" => "braz"
-        "email" => "braz@gmail.com"
-        ]
+Important to know, Laravel doesn't allow sending the form if it doesn't match.
 
-    }
+```php
+protected $fillable = [
+    'name',
+    'username',
+    'email',
+    'password',
+];
+```
 
-# important to know, laravel doesnt allow send form if it doesnt matched
+Option is to disable it and add `guarded = []`:
 
-    protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-    ];
+```php
+/**
+ * The attributes that are mass assignable.
+ *
+ * @var array
+ */
+protected $guarded = [];
+```
 
-# option is disabled it and add guarded = []
+Find an ID in the DB:
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
-# find in id in the db
-
+```php
 > \App\Models\User::find(62)
 > = App\Models\User {#6468
-
     id: 62,
     username: "ronaldinho10",
     name: "ronaldinho",
@@ -159,30 +156,34 @@ $cat = \App\Models\Category::factory(30)->create();
     #remember_token: null,
     created_at: "2023-10-27 10:12:33",
     updated_at: "2023-10-27 10:12:33",
-
 }
+```
 
-# very important to use the convention set""Attribute
+Very important to use the convention `set[Attribute]`:
 
-    public function setPasswordAttribute($password) {
-        $this->attributes['password'] = bcrypt($password);
-    }
+```php
+public function setPasswordAttribute($password) {
+    $this->attributes['password'] = bcrypt($password);
+}
+```
 
-# handke errors
+Handle errors:
 
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+```php
+@error('name')
+<p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+@enderror
+```
 
-# handle inputs values
+Handle input values:
 
--   value="{{ old('name') }}"
-
-ex:
-<input  class="border border-gray-400 p-2 w-full"
-                             type="email"
-                             name="email"
-                             id="email"
-                             required
-                             value="{{ old('name') }}"
-                     />
+```html
+<input
+    class="border border-gray-400 p-2 w-full"
+    type="email"
+    name="email"
+    id="email"
+    required
+    value="{{ old('name') }}"
+/>
+```
