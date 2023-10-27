@@ -18,6 +18,7 @@
                             name="name"
                             id="name"
                             required
+                            value="{{ old('name') }}"
                     />
 
                     @error('name')
@@ -37,6 +38,7 @@
                             name="username"
                             id="username"
                             required
+                            value="{{ old('name') }}"
                     />
                 </div>
 
@@ -52,6 +54,7 @@
                             name="password"
                             id="password"
                             required
+                            value="{{ old('name') }}"
                     />
                 </div>
 
@@ -67,6 +70,7 @@
                             name="email"
                             id="email"
                             required
+                            value="{{ old('name') }}"
                     />
                 </div>
 

@@ -167,3 +167,22 @@ $cat = \App\Models\Category::factory(30)->create();
     public function setPasswordAttribute($password) {
         $this->attributes['password'] = bcrypt($password);
     }
+
+# handke errors
+
+                    @error('name')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+
+# handle inputs values
+
+-   value="{{ old('name') }}"
+
+ex:
+<input  class="border border-gray-400 p-2 w-full"
+                             type="email"
+                             name="email"
+                             id="email"
+                             required
+                             value="{{ old('name') }}"
+                     />
