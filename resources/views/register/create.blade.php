@@ -1,19 +1,24 @@
 <x-layout>
     <section class="px-6 py-8">
-        <main class="max-w-lg mx-auto mt-10">
-            <x-panel>
-                <h1 class="text-center font-bold text-xl">Register!</h1>
+        <main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-300 p-6 rounded-xl">
+            <h1 class="text-center font-bold text-xl">Register</h1>
 
-                <form method="POST" action="/register" class="mt-10">
-                    @csrf
+            <form action="/register" method="POST" class="mt-10">
+                <div class="mb-6">
+                    <label  class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                            for="username"
+                    >
+                        Username
+                    </label>
 
-                    <x-form.input name="name" required />
-                    <x-form.input name="username" required />
-                    <x-form.input name="email" type="email" required />
-                    <x-form.input name="password" type="password" autocomplete="new-password" required />
-                    <x-form.button>Sign Up</x-form.button>
-                </form>
-            </x-panel>
+                    <input  class="border border-gray-400 p-2 w-full"
+                            type="text"
+                            name="username"
+                            id="username"
+                            required
+                    />
+                </div>
+            </form>
         </main>
     </section>
 </x-layout>

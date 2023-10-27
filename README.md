@@ -95,3 +95,11 @@ php artisan db:seed
 php artisan tinker
 $cat = \App\Models\Category::factory(30)->create();
 ```
+
+# Notes
+
+    <form action="/" method="POST">
+        @csrf
+    </form>
+
+-   @csrf -> always have to add it to form
