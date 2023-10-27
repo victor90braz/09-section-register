@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class RegisterController extends Controller
 {
     public function create()
@@ -36,5 +38,7 @@ class RegisterController extends Controller
         ]);
 
         User::create($attributes);
+
+        return redirect('/');
     }
 }
