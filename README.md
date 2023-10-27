@@ -144,3 +144,20 @@ $cat = \App\Models\Category::factory(30)->create();
      * @var array
      */
     protected $guarded = [];
+
+# find in id in the db
+
+> \App\Models\User::find(62)
+> = App\Models\User {#6468
+
+    id: 62,
+    username: "ronaldinho10",
+    name: "ronaldinho",
+    email: "ronaldinho@gmail.com",
+    email_verified_at: null,
+    #password: "$2y$10$sESFNsEe8KCgyw4AGe2CJetr1N0nXeSxezjHam9rtVy.CFJBUlUBS",
+    #remember_token: null,
+    created_at: "2023-10-27 10:12:33",
+    updated_at: "2023-10-27 10:12:33",
+
+}
