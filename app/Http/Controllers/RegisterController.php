@@ -31,6 +31,7 @@ class RegisterController extends Controller
                 'required',
                 'email',
                 'max:255',
+                Rule::unique('users', 'email')
             ],
             'password' => [
                 'required',
