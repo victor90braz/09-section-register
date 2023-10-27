@@ -1,9 +1,7 @@
-Certainly, here's an updated version of your README with a nice explanation of pagination and a styled presentation:
-
 ````markdown
 # Laravel Database Interaction README
 
-**GitHub Repository:** [08-section Repository](https://github.com/victor90braz/08-section.git)
+**GitHub Repository:** [09-section Repository](https://github.com/victor90braz/09-section-register.git)
 
 ## Introduction
 
@@ -97,87 +95,3 @@ php artisan db:seed
 php artisan tinker
 $cat = \App\Models\Category::factory(30)->create();
 ```
-
--   **Retrieve data with relationships:**
-
-```bash
-php artisan tinker
-\App\Models\Post::with('user', 'category')->first()
-```
-
-## Implementing Pagination for Search Results
-
-Dealing with a large number of items, such as posts, requires implementing pagination to enhance the user experience and make navigation more manageable. In your code, you can achieve this using Laravel's pagination features.
-
-### How to Implement Pagination
-
-1. In your route or controller, when retrieving a list of posts, use the `paginate` method to split the results into multiple pages. For example:
-
-    ```php
-    $posts = Post::latest()->filter(
-        request(['search', 'category', 'author'])
-    )->paginate(6)->withQueryString()
-
-    $posts = Post::latest()->filter(
-        request(['search', 'category', 'author'])
-    )->simplePaginate()->withQueryString()
-    ```
-
-    In this code, `paginate(6)` specifies that you want to display six posts per page. You can adjust this number according to your design and content.
-
-2. To display pagination links in your view, you can use Laravel's built-in `links()` method. Add the following code to your view file to generate pagination links:
-
-    ```php
-    {{ $posts->links() }}
-    ```
-
-    Including `{{ $posts->links() }}` in your view provides users with a user-friendly way to navigate through multiple pages of search results.
-
-```html
-<x-layout>
-    @include ('posts._header')
-
-    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-        @if ($posts->count())
-        <x-posts-grid :posts="$posts" />
-
-        {{ $posts->links() }} @else
-        <p class="text-center">No posts yet. Please check back later.</p>
-        @endif
-    </main>
-</x-layout>
-```
-
-### Additional Styling (Optional)
-
-To style your pagination, you can modify your application's CSS. Laravel provides the flexibility to customize the look and feel to match your design.
-
-## Additional Notes
-
-### Vendor Publishing
-
-You can use the following command to publish vendor assets related to pagination:
-
-```bash
-php artisan vendor:publish --tag=laravel-pagination
-```
-
-### AppServiceProvider Customization
-
-You can customize the appearance of the pagination using the `AppServiceProvider`. Example code in `AppServiceProvider.php`:
-
-```php
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Support\ServiceProvider;
-
-public function boot()
-{
-    // Uncomment one of the following lines based on your preferred styling:
-
-    // Paginator::useBootstrap();  // Use Bootstrap pagination styling
-    // Paginator::useBootstrapThree(); // Use Bootstrap 3 pagination styling
-    // Paginator::useTailwind();  // Use Tailwind CSS pagination styling
-}
-```
-
-This enhanced README provides clear instructions on setting up your Laravel application, interacting with the database, and implementing pagination for better user experience. You can also customize the pagination styling to suit your project's design.
