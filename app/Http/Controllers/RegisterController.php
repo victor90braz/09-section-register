@@ -20,7 +20,6 @@ class RegisterController extends Controller
             'name' => [
                 'required',
                 'max:255',
-                'min:3'
             ],
             'username' => [
                 'required',
