@@ -186,6 +186,14 @@ Handle errors:
 @enderror
 ```
 
+or at the end of form
+
+<div class="mb-6">
+    @foreach ($errors->all() as $error)
+        <li class="text-red-500 text-xs">{{ $error }}</li>
+    @endforeach
+</div>
+
 Handle input values:
 
 ```html
