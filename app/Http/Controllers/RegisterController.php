@@ -13,7 +13,7 @@ class RegisterController extends Controller
     {
         // ddd(request()->all());
 
-        request()->validate([
+        $attributes = request()->validate([
             'name' => [
                 'required',
                 'max:255',
@@ -35,6 +35,6 @@ class RegisterController extends Controller
             ],
         ]);
 
-        User::create();
+        User::create($attributes);
     }
 }
