@@ -103,3 +103,11 @@ $cat = \App\Models\Category::factory(30)->create();
     </form>
 
 -   @csrf -> always have to add it to form
+
+-   store
+    request()->validate([
+    'name' => 'required:max:255',
+    'username' => 'required|max:255|min:3',
+    'email' => 'required|email|max:255',
+    'password' => 'required|max:255|min:7',
+    ]);
