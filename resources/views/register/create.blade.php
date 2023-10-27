@@ -54,7 +54,6 @@
                             name="password"
                             id="password"
                             required
-                            value="{{ old('name') }}"
                     />
                 </div>
 
