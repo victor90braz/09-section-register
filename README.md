@@ -126,3 +126,21 @@ $cat = \App\Models\Category::factory(30)->create();
         ]
 
     }
+
+# important to know, laravel doesnt allow send form if it doesnt matched
+
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'password',
+    ];
+
+# option is disabled it and add guarded = []
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
