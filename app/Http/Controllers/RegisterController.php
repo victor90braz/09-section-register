@@ -11,7 +11,7 @@ class RegisterController extends Controller
 
     public function store()
     {
-        ddd(request()->all());
+        // ddd(request()->all());
 
         request()->validate([
             'name' => [
@@ -34,5 +34,7 @@ class RegisterController extends Controller
                 'max:255',
             ],
         ]);
+
+        User::create();
     }
 }
