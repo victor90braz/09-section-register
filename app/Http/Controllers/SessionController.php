@@ -35,6 +35,9 @@ class SessionController extends Controller
         return back()->withErrors([
             'email' => 'Your provided credentials could not be verified.'
         ]);
+
+        // throw ValidationException::withMessages(['email' => 'Your provided credentials could not be verified.']);
+
     }
 
     public function destroy() {
