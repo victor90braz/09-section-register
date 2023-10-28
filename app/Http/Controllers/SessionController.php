@@ -17,7 +17,7 @@ class SessionController extends Controller
         // validate the request
 
         $credentials = request()->validate([
-            'email' => ['required', 'exists:users,email'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
@@ -33,7 +33,7 @@ class SessionController extends Controller
         // auth fail
 
         return back()->withErrors([
-            'email' => 'Your provided credentials could not be verified'
+            'email' => 'Your provided credentials could not be verified.'
         ]);
     }
 
