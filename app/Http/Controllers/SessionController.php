@@ -14,34 +14,27 @@ class SessionController extends Controller
 
     public function store() {
 
-        // validate the request
-
+        // Validate the request
         $credentials = request()->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
-        // attempt to authenticate and log in the user
-        // based on the provided credentials
-
-        if (auth()->attempt($credentials)) {
-
-            // Nice to Have session fixation (read documentation)
-            session()->regenerate();
-
-            // redirect with a success flash message
-            return redirect("/")->with("success", "Welcome Back!");
+        // Attempt to authenticate and log in the user based on the provided credentials
+        if (!auth()->attempt($credentials)) {
+            // Authentication failed
+            return back()->withErrors([
+                'email' => 'Your provided credentials could not be verified.',
+            ]);
         }
 
-        // auth fail
+        // Session fixation prevention (session regeneration)
+        session()->regenerate();
 
-        return back()->withErrors([
-            'email' => 'Your provided credentials could not be verified.'
-        ]);
-
-        // throw ValidationException::withMessages(['email' => 'Your provided credentials could not be verified.']);
-
+        // Redirect with a success flash message
+        return redirect("/")->with("success", "Welcome Back!");
     }
+
 
     public function destroy() {
 
