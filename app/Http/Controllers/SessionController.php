@@ -26,6 +26,9 @@ class SessionController extends Controller
 
         if (auth()->attempt($credentials)) {
 
+            // Nice to Have session fixation (read documentation)
+            session()->regenerate();
+
             // redirect with a success flash message
             return redirect("/")->with("success", "Welcome Back!");
         }
