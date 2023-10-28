@@ -16,15 +16,27 @@ class SessionController extends Controller
 
         // validate the request
 
-        request()->validate([
+        $credentials = request()->validate([
             'email' => ['required', 'exists:users,email'],
             'password' => ['required']
-        ])
+        ]);
 
         // attempt to authenticate and log in the user
         // based on the provided credentials
 
-        // redirect with a success flash message
+        if (auth()->attempt($credentials)) {
+
+            // redirect with a success flash message
+            return redirect("/")->with("success", "Welcome Back!");
+        }
+
+        // auth fail
+
+        return back()->withErrors([
+            'email' => 'Your provided credentials could not be verified'
+        ]);
+
+
     }
 
     public function destroy() {
